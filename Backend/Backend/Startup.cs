@@ -24,7 +24,7 @@ namespace Backend
         {
         
             services.AddDbContext<TodoContext>(opt =>
-                  opt.UseInMemoryDatabase("Orders"));
+                  opt.UseInMemoryDatabase("MyBd"));
 
             //https://metanit.com/sharp/aspnet5/23.7.php
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)//Для установки аутентификации с помощью токенов  в методе ConfigureServices в вызов services.AddAuthentication передается значение JwtBearerDefaults.AuthenticationScheme.

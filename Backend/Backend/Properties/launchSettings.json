@@ -20,7 +20,7 @@
     "Backend": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/Orders/GetOrders",
+      "launchUrl": "api/Orders",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

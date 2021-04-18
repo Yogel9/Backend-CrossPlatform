@@ -11,48 +11,48 @@ namespace Backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrdersController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly TodoContext _context;
 
-        public OrdersController(TodoContext context)
+        public UsersController(TodoContext context)
         {
             _context = context;
         }
 
-        // GET: api/Orders
+        // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
+        public async Task<ActionResult<IEnumerable<User>>> GetUser()
         {
-            return await _context.Orders.ToListAsync();
+            return await _context.User.ToListAsync();
         }
 
-        // GET: api/Orders/5
+        // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Order>> GetOrder(int id)
+        public async Task<ActionResult<User>> GetUser(long id)
         {
-            var order = await _context.Orders.FindAsync(id);
+            var user = await _context.User.FindAsync(id);
 
-            if (order == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return order;
+            return user;
         }
 
-        // PUT: api/Orders/5
+        // PUT: api/Users/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutOrder(int id, Order order)
+        public async Task<IActionResult> PutUser(long id, User user)
         {
-            if (id != order.OrderId)
+            if (id != user.UserId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(order).State = EntityState.Modified;
+            _context.Entry(user).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace Backend.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!OrderExists(id))
+                if (!UserExists(id))
                 {
                     return NotFound();
                 }
@@ -73,37 +73,37 @@ namespace Backend.Controllers
             return NoContent();
         }
 
-        // POST: api/Orders
+        // POST: api/Users
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Order>> PostOrder(Order order)
+        public async Task<ActionResult<User>> PostUser(User user)
         {
-            _context.Orders.Add(order);
+            _context.User.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetOrder", new { id = order.OrderId }, order);
+            return CreatedAtAction("GetUser", new { id = user.UserId }, user);
         }
 
-        // DELETE: api/Orders/5
+        // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Order>> DeleteOrder(int id)
+        public async Task<ActionResult<User>> DeleteUser(long id)
         {
-            var order = await _context.Orders.FindAsync(id);
-            if (order == null)
+            var user = await _context.User.FindAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            _context.Orders.Remove(order);
+            _context.User.Remove(user);
             await _context.SaveChangesAsync();
 
-            return order;
+            return user;
         }
 
-        private bool OrderExists(int id)
+        private bool UserExists(long id)
         {
-            return _context.Orders.Any(e => e.OrderId == id);
+            return _context.User.Any(e => e.UserId == id);
         }
     }
 }
