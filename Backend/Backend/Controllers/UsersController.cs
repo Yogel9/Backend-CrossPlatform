@@ -14,10 +14,13 @@ namespace Backend.Controllers
     public class UsersController : ControllerBase
     {
         private readonly TodoContext _context;
+        private readonly FDeclaration _function;
 
-        public UsersController(TodoContext context)
+   
+            public UsersController(TodoContext context, FDeclaration fun)
         {
             _context = context;
+            _function = fun;
         }
 
         // GET: api/Users
@@ -25,6 +28,12 @@ namespace Backend.Controllers
         public async Task<ActionResult<IEnumerable<User>>> GetUser()
         {
             return await _context.User.ToListAsync();
+        }
+
+        [HttpGet("SortUser")]
+        public async Task<ActionResult<IEnumerable<User>>> GetExpensiveOrder(int var)
+        {
+            return _function.ShowUserSortName(_context.User.ToList(),var);//1-Возрастание 2-убвание
         }
 
         // GET: api/Users/5

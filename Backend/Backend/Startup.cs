@@ -22,7 +22,9 @@ namespace Backend
         //Необязательный метод ConfigureServices() регистрирует сервисы, которые используются приложением.
         public void ConfigureServices(IServiceCollection services)
         {
-        
+            //string cons = "Server=(localdb)\\mssqllocaldb;Database=OrderBd;Trusted_Connection=True;";
+            //// устанавливаем контекст данных 
+            //services.AddDbContext<TodoContext>(options => options.UseSqlServer(cons));
             services.AddDbContext<TodoContext>(opt =>
                   opt.UseInMemoryDatabase("MyBd"));
 
@@ -51,8 +53,9 @@ namespace Backend
                             ValidateIssuerSigningKey = true,
                         };
                     });
-            services.AddControllersWithViews();
+            services.AddControllers(); // используем контроллеры без представлений
 
+            services.AddScoped<FDeclaration, Function>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

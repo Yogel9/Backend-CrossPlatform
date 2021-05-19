@@ -14,18 +14,48 @@ namespace Backend.Controllers
     public class OrdersController : ControllerBase
     {
         private readonly TodoContext _context;
+        private readonly FDeclaration _function;
 
-        public OrdersController(TodoContext context)
+        public OrdersController(TodoContext context, FDeclaration fun)
         {
             _context = context;
+            _function = fun;
         }
 
         // GET: api/Orders
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
+        public async Task<ActionResult<IEnumerable<OrderInfo>>> GetOrders()
         {
-            return await _context.Orders.ToListAsync();
+            return _function.ShowAllOrder(_context.Orders.Include(a => a.Furnitures).Include(b => b.Сlient).ToList());
+            //return await _context.Orders.ToListAsync();
         }
+
+
+        [HttpGet("ExpOrder")]
+        public async Task<ActionResult<IEnumerable<OrderInfo>>> GetExpensiveOrder()
+        {
+            return _function.ShowExpensiveOrder(_context.Orders.Include(a => a.Furnitures).Include(b => b.Сlient).ToList());
+            //return await _context.Orders.ToListAsync();
+        }
+
+        [HttpGet("Adderss")]
+        public async Task<ActionResult<IEnumerable<OrderInfo>>> GetOrderByAddress(string address)
+        {
+            return _function.ShowOrderByAddress(_context.Orders.Include(a => a.Furnitures).Include(b => b.Сlient).ToList(),address);
+            //return await _context.Orders.ToListAsync();
+        }
+
+      
+
+        [HttpGet("CustExpOrder")]
+        public async Task<ActionResult<IEnumerable<OrderInfo>>> GetExpensiveOrder2(int k)
+        {
+            return _function.ShowExpensiveOrder2(_context.Orders.Include(a => a.Furnitures).Include(b => b.Сlient).ToList(),k);
+            //return await _context.Orders.ToListAsync();
+        }
+
+        
+
 
         // GET: api/Orders/5
         [HttpGet("{id}")]

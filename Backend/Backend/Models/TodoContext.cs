@@ -16,7 +16,7 @@ namespace Backend.Models
         public TodoContext(DbContextOptions<TodoContext> options)
             : base(options)
         {
-            Database.EnsureDeleted();
+           // Database.EnsureDeleted();
             Database.EnsureCreated();//при отсутствии базы данных автоматически создает ее
         }
     }

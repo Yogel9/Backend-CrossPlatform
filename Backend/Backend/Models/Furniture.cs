@@ -12,6 +12,6 @@ namespace Backend.Models
         public string Company { get; set; }
         public int Price { get; set; }
 
-        public Order Order { get; set; }
+        public long OrderId { get; set; }
     }
 }
