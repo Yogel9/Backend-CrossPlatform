@@ -10,8 +10,10 @@ namespace Backend.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Company { get; set; }
-        public int Price { get; set; }
-
-        public long OrderId { get; set; }
+        public float Price { get; set; }
+        public int SizeX { get; set; } = 1;
+        public int SizeY { get; set; } = 1;
+        public int SizeZ { get; set; } = 1;
+        // public long OrderId { get; set; }
     }
 }

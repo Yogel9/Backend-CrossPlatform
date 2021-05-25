@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Backend.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Backend.Controllers
 {
@@ -22,6 +23,7 @@ namespace Backend.Controllers
             _function = fun;
         }
 
+        [Authorize(Roles = "admin")]
         // GET: api/Orders
         [HttpGet]
         public async Task<ActionResult<IEnumerable<OrderInfo>>> GetOrders()
@@ -30,7 +32,7 @@ namespace Backend.Controllers
             //return await _context.Orders.ToListAsync();
         }
 
-
+        [Authorize(Roles = "admin")]
         [HttpGet("ExpOrder")]
         public async Task<ActionResult<IEnumerable<OrderInfo>>> GetExpensiveOrder()
         {
@@ -38,15 +40,16 @@ namespace Backend.Controllers
             //return await _context.Orders.ToListAsync();
         }
 
-        [HttpGet("Adderss")]
-        public async Task<ActionResult<IEnumerable<OrderInfo>>> GetOrderByAddress(string address)
-        {
-            return _function.ShowOrderByAddress(_context.Orders.Include(a => a.Furnitures).Include(b => b.Сlient).ToList(),address);
-            //return await _context.Orders.ToListAsync();
-        }
+        //[HttpGet("AddersSort")]
+        //public async Task<ActionResult<IEnumerable<OrderInfo>>> GetOrderByAddress()
+        //{
 
-      
+        //    return _function.ShowOrderByAddress(_context.Orders.Include(a => a.Furnitures).Include(b => b.Сlient).ToList());
+        //    //return await _context.Orders.ToListAsync();
+        //}
 
+
+        [Authorize(Roles = "admin")]
         [HttpGet("CustExpOrder")]
         public async Task<ActionResult<IEnumerable<OrderInfo>>> GetExpensiveOrder2(int k)
         {
@@ -54,10 +57,11 @@ namespace Backend.Controllers
             //return await _context.Orders.ToListAsync();
         }
 
-        
+
 
 
         // GET: api/Orders/5
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<Order>> GetOrder(int id)
         {
@@ -74,6 +78,7 @@ namespace Backend.Controllers
         // PUT: api/Orders/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOrder(int id, Order order)
         {
@@ -106,6 +111,7 @@ namespace Backend.Controllers
         // POST: api/Orders
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Order>> PostOrder(Order order)
         {
@@ -116,6 +122,7 @@ namespace Backend.Controllers
         }
 
         // DELETE: api/Orders/5
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<ActionResult<Order>> DeleteOrder(int id)
         {

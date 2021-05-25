@@ -48,7 +48,7 @@ namespace Backend
                             ValidateLifetime = true,
 
                             // установка ключа безопасности
-                            IssuerSigningKey = AuthOptions.SigningKey,
+                            IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),//SigningKey,
                             // валидация ключа безопасности
                             ValidateIssuerSigningKey = true,
                         };

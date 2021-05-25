@@ -53,13 +53,13 @@ namespace Backend.Controllers
         // PUT: api/Users/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(long id, User user)
+        [HttpPut]
+        public async Task<IActionResult> PutUser(User user)
         {
-            if (id != user.UserId)
-            {
-                return BadRequest();
-            }
+            //if (id != user.UserId)
+            //{
+            //    return BadRequest();
+            //}
 
             _context.Entry(user).State = EntityState.Modified;
 
@@ -69,14 +69,14 @@ namespace Backend.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                //if (!UserExists(id))
+                //{
+                //    return NotFound();
+                //}
+                //else
+                //{
+                //    throw;
+                //}
             }
 
             return NoContent();

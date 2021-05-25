@@ -16,22 +16,26 @@ namespace Backend.Models
                NameOfClient = a.Сlient.Name,
                Address = a.Address,
                Price=a.Price,
-               NumberOfFurnitures= a.NumberOfFurnitures 
+               NumberOfFurnitures= a.NumberOfFurnitures,
+               DeliveryType= a.DeliveryType,
+               PriceDelivery= a.PriceDelivery
             }).ToList();
         }
 
 
         public List<OrderInfo> ShowExpensiveOrder(List<Order> ord)
         {
-            
-           return ord.Where(a => a.Price >= 100).Select(t => new OrderInfo
+           
+            return ord.Where(t => t.Price >= 100).Select(a => new OrderInfo
             {
-                OrderId = t.OrderId,
-                NameOfClient = t.Сlient.Name,
-                Address = t.Address,
-                Price = t.Price,
-                NumberOfFurnitures = t.NumberOfFurnitures
-            }
+               OrderId = a.OrderId,
+               NameOfClient = a.Сlient.Name,
+               Address = a.Address,
+               Price = a.Price,
+               NumberOfFurnitures = a.NumberOfFurnitures,
+               DeliveryType = a.DeliveryType,
+               PriceDelivery = a.PriceDelivery
+           }
             ).ToList();
         }
 
@@ -44,25 +48,34 @@ namespace Backend.Models
                 NameOfClient = t.Сlient.Name,
                 Address = t.Address,
                 Price = t.Price,
-                NumberOfFurnitures = t.NumberOfFurnitures
+                NumberOfFurnitures = t.NumberOfFurnitures,
+                DeliveryType = t.DeliveryType,
+                PriceDelivery = t.PriceDelivery
             }
              ).ToList();
         }
 
 
 
-        public List<OrderInfo> ShowOrderByAddress(List<Order> ord,string address)
+        public List<System.Linq.IGrouping<string,Order>> ShowOrderByAddress(List<Order> ord)
         {
+            Console.WriteLine((from Order s in ord group s by s.Address).ToList());
 
-            return ord.Where(a => a.Address == address).Select(t => new OrderInfo
-            {
-                OrderId = t.OrderId,
-                NameOfClient = t.Сlient.Name,
-                Address = t.Address,
-                Price = t.Price,
-                NumberOfFurnitures = t.NumberOfFurnitures
-            }
-             ).ToList();
+             return (from Order s in ord group s by s.Address).ToList();
+
+
+
+            //return ord.Where(t => t.Address == address).Select(a => new OrderInfo
+            //{
+            //    OrderId = a.OrderId,
+            //    NameOfClient = a.Сlient.Name,
+            //    Address = a.Address,
+            //    Price = a.Price,
+            //    NumberOfFurnitures = a.NumberOfFurnitures,
+            //    DeliveryType = a.DeliveryType,
+            //    PriceDelivery = a.PriceDelivery
+            //}
+            // ).ToList();
         }
 
 
