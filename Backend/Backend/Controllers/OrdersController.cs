@@ -45,7 +45,7 @@ namespace Backend.Controllers
             return _function.GetOneOrderForEdit(_context.Orders.Include(a => a.Furnitures).Include(b => b.Сlient).ToList(), ORD).ToList();
         }
 
-        // [Authorize(Roles = "admin")]
+     
         [HttpGet("ExpOrder")]
         public async Task<ActionResult<IEnumerable<OrderInfo>>> GetExpensiveOrder()
         {
@@ -83,8 +83,7 @@ namespace Backend.Controllers
             return _function.ShowMyFurniture(_context.Orders.Include(a => a.Furnitures).Include(b => b.Сlient).ToList(), IdClient);
         }
 
-        // GET: api/Orders/5
-        // [Authorize]
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Order>> GetOrder(int id)
         {
@@ -98,10 +97,7 @@ namespace Backend.Controllers
             return order;
         }
 
-        // PUT: api/Orders/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-      //  [Authorize]
+   
         [HttpPut]
         public async Task<IActionResult> PutOrder(int id, Order order)
         {
@@ -144,8 +140,7 @@ namespace Backend.Controllers
             return CreatedAtAction("GetOrder", new { id = order.OrderId }, order);
         }
 
-        // DELETE: api/Orders/5
-      //  [Authorize]
+      
         [HttpDelete]
         public async Task<ActionResult<Order>> DeleteOrder(int id)
         {
