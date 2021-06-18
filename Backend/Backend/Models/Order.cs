@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace Backend.Models
 {
     public class Order
@@ -97,13 +98,25 @@ namespace Backend.Models
             ordInf.PriceDelivery = PriceDelivery;
             return ordInf;
         }
-        public OrderAndCost GetOrderInfoCost()
-        {
-            OrderAndCost ordcost = new OrderAndCost();
-            ordcost.OrderId = OrderId;
-            ordcost.Price = Price;
-            return ordcost;
-        }
+        //public OrderInfo2 GetAllOrderInfo()
+        //{
+        //    int[] vnum = new int[NumberOfFurnitures];
+        //    int k = 0;
+        //    OrderInfo2 ordInf = new OrderInfo2();
+        //    ordInf.OrderId = OrderId;
+        //    ordInf.NameOfClient = Сlient.Name;
+        //    ordInf.Address = Address;
+        //    ordInf.Price = Price;
+        //    ordInf.DeliveryType = DeliveryType;
+        //    foreach (Furniture i in Furnitures)
+        //    {
+        //        vnum[k] = i.Id;
+        //        k++;
+        //    }
+        //    ordInf.FurnitureId = vnum;
+
+        //    return ordInf;
+        //}
 
     }
 
@@ -118,11 +131,17 @@ namespace Backend.Models
         public int PriceDelivery { get; set; }
     }
 
-    public class OrderAndCost
-    {
-        public int OrderId { get; set; }
-        public float Price { get; set; }
-    }
+    //public class OrderInfo2
+    //{
+    //    public int OrderId { get; set; }
+    //    public string NameOfClient { get; set; }
+    //    public string Address { get; set; }
+    //    public float Price { get; set; }
+    //    public string DeliveryType { get; set; }
+    //    public int[]  FurnitureId { get; set; }
+    //}
+
+ 
 
 
     

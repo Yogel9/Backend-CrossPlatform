@@ -68,6 +68,81 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "NotInfoOrder",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Orders/OrdForEdit",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Orders",
+								"OrdForEdit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OneOrderForEdite",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Orders/OneOrdForEdit?ORD=1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Orders",
+								"OneOrdForEdit"
+							],
+							"query": [
+								{
+									"key": "ORD",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MyFurnitures",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Orders/MyFur?IdOrder=1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Orders",
+								"MyFur"
+							],
+							"query": [
+								{
+									"key": "IdOrder",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -89,11 +164,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW5AbWFpbC5ydSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwibmJmIjoxNjIxOTc2MDM2LCJleHAiOjE2MjE5NzYwOTYsImlzcyI6Ik15QXV0aFNlcnZlciIsImF1ZCI6Ik15QXV0aENsaWVudCJ9.SWns9aRvvFXGcQhnDOpE0xZzLFGypX9Mh_9Z2urfhsY",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Address\": \"backer str2\",\r\n    \"Price\": 32,\r\n    \"Сlient\":\r\n    {\r\n        \"Name\":\"Tomy\",\r\n        \"Age\":10\r\n    }\r\n}",
+							"raw": "{\r\n    \"Address\": \"backer str2\",\r\n    \"deliveryType\": \"Express\",\r\n    \"Сlient\":\r\n    {\r\n        \"Name\":\"Tomy\",\r\n        \"Age\":10\r\n    },\r\n    \"Furnitures\":[\r\n        {\r\n    \"name\": \"Стул\",\r\n    \"company\": \"hoff\",\r\n    \"price\": 1800,\r\n    \"sizeX\": 2,\r\n    \"sizeY\": 2\r\n        },\r\n        {\r\n    \"name\": \"Шкаф\",\r\n    \"company\": \"hoff\",\r\n    \"price\": 7800,\r\n    \"sizeX\": 7,\r\n    \"sizeY\": 8\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -122,7 +207,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Name\":\"Tony\",\r\n    \"Age\":10\r\n}",
+							"raw": "{\r\n    \"Name\":\"YaroSoad\",\r\n    \"Age\":20\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -151,7 +236,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Name\": \"Стул\",\r\n    \"Company\": \"hoff\",\r\n    \"Price\": 1800,\r\n    \"orderId\": 1\r\n}",
+							"raw": "{\r\n    \"Name\": \"Стул\",\r\n    \"Company\": \"hoff\",\r\n    \"Price\": 2800,\r\n    \"orderId\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -168,6 +253,45 @@
 							"path": [
 								"api",
 								"Furnitures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NextOrder",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW5AbWFpbC5ydSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwibmJmIjoxNjIzOTQ0OTIzLCJleHAiOjE2MjM5NDQ5ODMsImlzcyI6Ik15QXV0aFNlcnZlciIsImF1ZCI6Ik15QXV0aENsaWVudCJ9.0geXQLRUXWeUTAuxZsbLuA-8TUg-l88xITx-kdOPlFA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Address\": \"backer str2\",\r\n    \"deliveryType\": \"Express\",\r\n    \"Сlient\":\r\n    {\r\n    \"userId\": 1\r\n    },\r\n    \"Furnitures\":[\r\n        {\r\n    \"name\": \"Стул\",\r\n    \"company\": \"hoff\",\r\n    \"price\": 1800,\r\n    \"sizeX\": 2,\r\n    \"sizeY\": 2\r\n        },\r\n        {\r\n    \"name\": \"Шкаф\",\r\n    \"company\": \"hoff\",\r\n    \"price\": 7800,\r\n    \"sizeX\": 7,\r\n    \"sizeY\": 8\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Orders",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Orders"
 							]
 						}
 					},
@@ -199,10 +323,20 @@
 		{
 			"name": "ShowExpensiveOrder(Cust/100-withoutCust)",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW5AbWFpbC5ydSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwibmJmIjoxNjIxOTc2MDM2LCJleHAiOjE2MjE5NzYwOTYsImlzcyI6Ik15QXV0aFNlcnZlciIsImF1ZCI6Ik15QXV0aENsaWVudCJ9.SWns9aRvvFXGcQhnDOpE0xZzLFGypX9Mh_9Z2urfhsY",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:5001/api/Orders/ExpOrder",
+					"raw": "https://localhost:5001/api/Orders/CustExpOrder?k=100",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -211,7 +345,13 @@
 					"path": [
 						"api",
 						"Orders",
-						"ExpOrder"
+						"CustExpOrder"
+					],
+					"query": [
+						{
+							"key": "k",
+							"value": "100"
+						}
 					]
 				}
 			},
@@ -219,9 +359,16 @@
 		},
 		{
 			"name": "ShowOrderByAddress(временно нет)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": null
 			},
 			"response": []
@@ -231,7 +378,25 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "https://localhost:5001/api/Users/SortUser?var=1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Users",
+						"SortUser"
+					],
+					"query": [
+						{
+							"key": "var",
+							"value": "1"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -240,18 +405,9 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
-				"url": null
-			},
-			"response": []
-		},
-		{
-			"name": "CangeTypeDeliveryoOrder //Fragile//Express//Normal//Pickup",
-			"request": {
-				"method": "PUT",
-				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{\r\n    \"orderId\": 1,\r\n    \"Address\": \"backer st26\",\r\n    \"deliveryType\": \"Express\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -275,13 +431,13 @@
 			"response": []
 		},
 		{
-			"name": "CangeClient",
+			"name": "CangeTypeDeliveryoOrder //Fragile//Express//Normal//Pickup",
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"Name\":\"zKwril\",\r\n    \"Age\":10\r\n}\r\n",
+					"raw": "{\r\n    \"orderId\": 4,\r\n    \"deliveryType\": \"Express\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -289,7 +445,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:5001/api/Users/1",
+					"raw": "https://localhost:5001/api/Orders/4",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -297,8 +453,37 @@
 					"port": "5001",
 					"path": [
 						"api",
-						"Users",
-						"1"
+						"Orders",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CangeClient",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 1,\r\n    \"name\": \"jOSH\",\r\n    \"age\": 15\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/Users",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Users"
 					]
 				}
 			},
@@ -307,9 +492,55 @@
 		{
 			"name": "Authorization",
 			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"Login\":\"admin@mail.ru\",\r\n\"Password\":\"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/token",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OrderByUser",
+			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "https://localhost:5001/api/Orders/OrderClient?IdClient=1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Orders",
+						"OrderClient"
+					],
+					"query": [
+						{
+							"key": "IdClient",
+							"value": "1"
+						}
+					]
+				}
 			},
 			"response": []
 		}

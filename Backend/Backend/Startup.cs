@@ -8,10 +8,15 @@ using Backend.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
+
+using Microsoft.AspNetCore.Http;//CORS
+using Microsoft.Extensions.DependencyInjection;
+
 namespace Backend
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";//CORS
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -22,6 +27,8 @@ namespace Backend
         //Необязательный метод ConfigureServices() регистрирует сервисы, которые используются приложением.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddCors(); // добавляем сервисы CORS
             //string cons = "Server=(localdb)\\mssqllocaldb;Database=OrderBd;Trusted_Connection=True;";
             //// устанавливаем контекст данных 
             //services.AddDbContext<TodoContext>(options => options.UseSqlServer(cons));
@@ -74,6 +81,9 @@ namespace Backend
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            // подключаем CORS
+            app.UseCors(builder => builder.AllowAnyOrigin());
 
             app.UseEndpoints(endpoints =>
             {
